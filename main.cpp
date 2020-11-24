@@ -51,7 +51,7 @@ bool init() {
 bool loadMedia() {
 	bool success = true;
 
-	gHelloWorld = SDL_LoadBMP("hello_word.bmp");
+	gHelloWorld = SDL_LoadBMP("hello_world.bmp");
 	if (gHelloWorld == NULL) {
 		printf("Unable to load image. SDL Error: %s\n", SDL_GetError());
 		success = false;
