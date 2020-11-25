@@ -1,4 +1,5 @@
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_error.h>
 #include <SDL2/SDL_events.h>
 #include <SDL2/SDL_render.h>
 #include <SDL2/SDL_video.h>
@@ -19,7 +20,7 @@ void Game::init(const char *title, int x, int y, int width, int height, bool ful
         flags = SDL_WINDOW_FULLSCREEN;
     }
 
-    if (SDL_Init(SDL_INIT_EVERYTHING))
+    if (SDL_Init(SDL_INIT_EVERYTHING) == 0)
     {
         std::cout << "SDL initialized." << std::endl;
 
@@ -38,6 +39,7 @@ void Game::init(const char *title, int x, int y, int width, int height, bool ful
 
         isRunning = true;
     } else {
+        std::cout << "SDL failed to inialize. SDL Error: " << SDL_GetError() << std::endl;
         isRunning = false;
     }
 }
@@ -61,6 +63,7 @@ void Game::update()
 void Game::render()
 {
     SDL_RenderClear(renderer);
+    SDL_RenderPresent(renderer);
 }
 
 void Game::clean()
