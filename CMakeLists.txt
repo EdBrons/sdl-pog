@@ -1,9 +1,12 @@
-cmake_minimum_required(VERSION 3.7)
-
+cmake_minimum_required(VERSION 2.8)
 project(rpg)
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+# includes cmake/FindSDL2.cmake
+set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
 find_package(SDL2 REQUIRED)
+include_directories(${SDL2_INCLUDE_DIR})
+
 
 add_executable(rpg main.cpp game.cpp)
-target_link_libraries(rpg PRIVATE SDL2::SDL2)
+target_link_libraries(rpg ${SDL2_LIBRARY})
