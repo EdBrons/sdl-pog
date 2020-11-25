@@ -12,11 +12,5 @@ const int SCREEN_HEIGHT = 480;
 
 int main(int argc, char* args[])
 {
-	while (game is running) {
-		handle input
-		update data
-		render changes to display
-	}
-
 	return 0;
 }
