@@ -1,16 +1,16 @@
-/*This source code copyrighted by Lazy Foo' Productions (2004-2020)
-and may not be redistributed without written permission.*/
-
-//Using SDL, standard IO, and strings
 #include <SDL2/SDL.h>
-#include <stdio.h>
-#include <string>
+#include "game.hpp"
 
-//Screen dimension constants
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+Game *game = nullptr;
 
 int main(int argc, char* args[])
 {
-	return 0;
+	game = new Game();
+	while (game->running())
+	{
+		game->handleEvents();
+		game->update();
+		game->render();
+	}
+	game->clean();
 }
