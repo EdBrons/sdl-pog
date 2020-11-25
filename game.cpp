@@ -1,4 +1,5 @@
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_events.h>
 #include <SDL2/SDL_render.h>
 #include <SDL2/SDL_video.h>
 #include <iostream>
@@ -31,6 +32,7 @@ void Game::init(const char *title, int x, int y, int width, int height, bool ful
         renderer = SDL_CreateRenderer(window, -1, 0);
         if (renderer)
         {
+            SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
             std::cout << "Renderer created." << std::endl;
         }
 
@@ -42,6 +44,15 @@ void Game::init(const char *title, int x, int y, int width, int height, bool ful
 
 void Game::handleEvents()
 {
+    SDL_Event e;
+    SDL_PollEvent(&e);
+    switch(e.type) {
+        case SDL_QUIT:
+            isRunning = false;
+            break;
+        default:
+            break;
+    }
 }
 
 void Game::update()
@@ -49,10 +60,13 @@ void Game::update()
 
 void Game::render()
 {
-
+    SDL_RenderClear(renderer);
 }
 
 void Game::clean()
 {
-
+    SDL_DestroyWindow(window);
+    SDL_DestroyRenderer(renderer);
+    SDL_Quit();
+    std::cout << "Game cleaned." << std::endl;
 }
