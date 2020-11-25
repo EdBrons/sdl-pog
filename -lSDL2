@@ -1,2 +1,0 @@
-{ "directory": "/home/ian/Code/rpg", "file": "main.cpp", "output": "/tmp/main-90f82c.o", "arguments": ["/usr/bin/clang-11", "-xc++", "main.cpp", "--driver-mode=g++", "-w", "-o", "rpg", "--target=x86_64-pc-linux-gnu"]},
-{ "directory": "/home/ian/Code/rpg", "file": "game.cpp", "output": "/tmp/game-047821.o", "arguments": ["/usr/bin/clang-11", "-xc++", "game.cpp", "--driver-mode=g++", "-w", "-o", "rpg", "--target=x86_64-pc-linux-gnu"]},
