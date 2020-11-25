@@ -1,72 +1,22 @@
-#include<SDL2/SDL.h>
-#include <stdio.h>
+/*This source code copyrighted by Lazy Foo' Productions (2004-2020)
+and may not be redistributed without written permission.*/
 
+//Using SDL, standard IO, and strings
+#include <SDL2/SDL.h>
+#include <stdio.h>
+#include <string>
+
+//Screen dimension constants
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
-SDL_Window* gWindow = NULL;
-SDL_Surface* gScreenSurface = NULL;
-SDL_Surface* gHelloWorld = NULL;
-
-bool init();
-bool loadMedia();
-void close();
-
-int main(int argc, char* args[]) {
-	if (!init()) {
-		printf("Could not initialize.\n");
-	} else {
-		if (!loadMedia()) {
-			printf("Could load media.\n");
-		} else {
-			SDL_BlitSurface(gHelloWorld, NULL, gScreenSurface, NULL);
-			SDL_UpdateWindowSurface(gWindow);
-			SDL_Delay(2000);
-		}
+int main(int argc, char* args[])
+{
+	while (game is running) {
+		handle input
+		update data
+		render changes to display
 	}
-	close();
 
 	return 0;
-}
-
-bool init() {
-	bool success = true;
-
-	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-		printf("SDL could not be initialized. SDL_Error: %s\n", SDL_GetError());
-		success = false;
-	} else {
-		gWindow = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
-		if(gWindow == NULL) {
-			printf("Window could not be created. SDL_Error: %s\n", SDL_GetError());
-			success = false;
-		} else {
-			gScreenSurface = SDL_GetWindowSurface(gWindow);
-		}
-	}
-
-	return success;
-}
-
-bool loadMedia() {
-	bool success = true;
-
-	gHelloWorld = SDL_LoadBMP("hello_world.bmp");
-	if (gHelloWorld == NULL) {
-		printf("Unable to load image. SDL Error: %s\n", SDL_GetError());
-		success = false;
-	}
-
-	return success;
-}
-
-
-void close() {
-	SDL_FreeSurface(gHelloWorld);
-	gHelloWorld = NULL;
-
-	SDL_DestroyWindow(gWindow);
-	gWindow = NULL;
-
-	SDL_Quit();
 }
