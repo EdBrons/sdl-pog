@@ -1,6 +1,7 @@
 #include "game.hpp"
 
 SDL_Texture *playerTexture;
+SDL_Rect srcR, destR;
 
 Game::Game()
 {}
@@ -20,18 +21,15 @@ void Game::init(const char *title, int x, int y, int width, int height, bool ful
     {
         window = SDL_CreateWindow(title, x, y, width, height, flags);
         renderer = SDL_CreateRenderer(window, -1, 0);
-        if (renderer)
-        {
-            SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-        }
-
         isRunning = true;
     } else {
         std::cout << "SDL failed to inialize. SDL Error: " << SDL_GetError() << std::endl;
         isRunning = false;
     }
 
-    // SDL_Surface *tempSurface = IMG_Load("assets/chess/black_king.png");
+    SDL_Surface *tempSurface = IMG_Load("assets/Pixel_Art_Chess_DevilsWorkshop_V03/chess/black_king.png");
+    playerTexture = SDL_CreateTextureFromSurface(renderer, tempSurface);
+    SDL_FreeSurface(tempSurface);
 }
 
 void Game::handleEvents()
@@ -48,11 +46,17 @@ void Game::handleEvents()
 }
 
 void Game::update()
-{}
+{
+    destR.h = 100;
+    destR.w = 100;
+    destR.x++;
+    destR.y = 0;
+}
 
 void Game::render()
 {
     SDL_RenderClear(renderer);
+    SDL_RenderCopy(renderer, playerTexture, NULL, &destR);
     SDL_RenderPresent(renderer);
 }
 
