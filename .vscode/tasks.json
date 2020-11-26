@@ -11,7 +11,8 @@
             },
             "command": "cmake",
             "args": [
-                "./.."
+                "./..",
+                "-DCMAKE_EXPORT_COMPILE_COMMANDS=1"
             ],
             "problemMatcher": [],
             "group": {

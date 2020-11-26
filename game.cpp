@@ -30,6 +30,8 @@ void Game::init(const char *title, int x, int y, int width, int height, bool ful
         std::cout << "SDL failed to inialize. SDL Error: " << SDL_GetError() << std::endl;
         isRunning = false;
     }
+
+    // SDL_Surface *tempSurface = IMG_Load("assets/chess/black_king.png");
 }
 
 void Game::handleEvents()
