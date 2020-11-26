@@ -6,16 +6,16 @@
 #include <stdio.h>
 
 class Game {
-public:
+    public:
     Game();
     ~Game();
-    void init(const char* title, int x, int y, int width, int height, bool fullscreen);
+    void init(const char* title, int width, int height);
     void handleEvents();
     void update();
     void render();
     void clean();
     bool running() { return isRunning; }
-private:
+    private:
     bool isRunning;
     SDL_Window *window;
     SDL_Renderer *renderer;
