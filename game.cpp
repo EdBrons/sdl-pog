@@ -1,4 +1,5 @@
 #include "game.hpp"
+#include "texturemanager.hpp"
 
 SDL_Texture *playerTexture;
 SDL_Rect srcR, destR;
@@ -22,9 +23,7 @@ void Game::init(const char *title, int width, int height)
         isRunning = false;
     }
 
-    SDL_Surface *tempSurface = IMG_Load("assets/Pixel_Art_Chess_DevilsWorkshop_V03/chess/black_king.png");
-    playerTexture = SDL_CreateTextureFromSurface(renderer, tempSurface);
-    SDL_FreeSurface(tempSurface);
+    playerTexture = TextureManager::LoadTexture("assets/Pixel_Art_Chess_DevilsWorkshop_V03/chess/black_king.png", renderer);
 }
 
 void Game::handleEvents()
