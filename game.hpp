@@ -1,5 +1,4 @@
 #pragma once
-
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <iostream>
@@ -15,13 +14,13 @@ public:
 
     void handleEvents();
     void update();
-    bool running() { return _running; }
+    bool running() { return running; }
     void render();
     void clean();
 
     static SDL_Renderer *Renderer;
 private:
-    bool _running;
+    bool running;
     SDL_Window *window;
     SDL_Renderer *renderer;
 };
