@@ -5,18 +5,23 @@
 #include <iostream>
 #include <stdio.h>
 
-class Game {
-    public:
+class Game 
+{
+public:
     Game();
     ~Game();
+
     void init(const char* title, int width, int height);
+
     void handleEvents();
     void update();
+    bool running() { return _running; }
     void render();
     void clean();
-    bool running() { return isRunning; }
-    private:
-    bool isRunning;
+
+    static SDL_Renderer *Renderer;
+private:
+    bool _running;
     SDL_Window *window;
     SDL_Renderer *renderer;
 };
