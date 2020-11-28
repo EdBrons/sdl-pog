@@ -16,19 +16,21 @@ SDL_Texture *TextureManager::LoadTexture(const char *file)
 //     return TextureMap->find(name)->second;
 // }
 
-
 AnimationFrame *TextureManager::LoadAnimation(const char *name, const char *json)
 {
+    int id = 0;
     std::ifstream ifs(json);
     nlohmann::json j = nlohmann::json::parse(ifs);
+    AnimationFrame **head = nullptr;
     AnimationFrame *current;
-    AnimationFrame *last = nullptr;
-    AnimationFrame *head = current;
+    head = &current;
     auto a = j.find(name);
     nlohmann::json frames = (*a)["frames"];
     for (auto b = frames.begin(); b != frames.end(); ++b)
     {
         current = new AnimationFrame();
+        current->id = id;
+        id++;
         int x = (*b)["x"];
         int y = (*b)["y"];
         int w = (*b)["w"];
@@ -41,12 +43,6 @@ AnimationFrame *TextureManager::LoadAnimation(const char *name, const char *json
         rect->h = h;
         current->srect = rect;
         current->time = t;
-        last = current;
-        if (!last)
-        {
-            last->next = current;
-        }
     }
-    last->next = head;
-    return head;
+    return *head;
 }

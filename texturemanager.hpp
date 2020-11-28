@@ -4,6 +4,7 @@
 #include "json.hpp"
 
 struct AnimationFrame {
+    int id;
     int time;
     SDL_Rect *srect;
     AnimationFrame *next;

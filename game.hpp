@@ -23,6 +23,9 @@ public:
     static SDL_Renderer *Renderer;
     static SDL_Texture *SpriteSheet;
     static AnimationFrame *BarbarianAttack;
+    static AnimationFrame *currentFrame;
+    static SDL_Rect drect;
+    static int timer;
 private:
     bool isRunning;
     SDL_Window *window;
