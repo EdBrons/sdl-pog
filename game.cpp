@@ -22,7 +22,36 @@ void Game::init(const char *title, int width, int height)
         std::cout << "SDL failed to inialize. SDL Error: " << SDL_GetError() << std::endl;
         isRunning = false;
     }
+
+    // load spritesheet
     SpriteSheet = TextureManager::LoadTexture("assets/microFantasy.v0.4/characters/all.png");
+
+    sprites = new std::vector<Sprite*>();
+
+    Sprite *my_sprite = makeSprite();
+}
+
+Sprite *Game::makeSprite()
+{
+    Sprite *s = new Sprite();
+    sprites->push_back(s);
+    return s;
+}
+
+void Game::removeSprite(Sprite *sprite)
+{
+    for (auto el = sprites->begin(); el != sprites->end();)
+    {
+        if (*el == sprite)
+        {
+            sprites->erase(el);
+            free(sprite);
+        }
+        else
+        {
+            ++el;
+        }
+    }
 }
 
 void Game::handleEvents()
@@ -44,6 +73,12 @@ void Game::update()
 void Game::render(int delta)
 {
     SDL_RenderClear(Renderer);
+    // render sprites
+    for (auto s : *sprites)
+    {
+        s->update(delta);
+        s->render(Renderer);
+    }
     SDL_RenderPresent(Renderer);
 }
 

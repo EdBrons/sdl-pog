@@ -1,10 +1,12 @@
-#pragma once
+#ifndef GAME_H
+#define GAME_H
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <iostream>
-#include <vector>
 #include <stdio.h>
+#include <vector>
 #include "texturemanager.hpp"
+#include "sprite.hpp"
 
 class Game 
 {
@@ -23,7 +25,12 @@ public:
     static SDL_Renderer *Renderer;
     static SDL_Texture *SpriteSheet;
 private:
+    Sprite *makeSprite();
+    void removeSprite(Sprite*);
+    std::vector<Sprite*> *sprites;
+
     bool isRunning;
     SDL_Window *window;
     SDL_Renderer *renderer;
 };
+#endif

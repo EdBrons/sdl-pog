@@ -1,13 +1,14 @@
-#pragma once
+#ifndef SPRITE_H
+#define SPRITE_H
 #include <SDL2/SDL.h>
-#include "texturemanager.hpp"
 
 class Sprite 
 {
 public:
     Sprite();
     ~Sprite();
-    void update();
+    void update(int delta);
     void render(SDL_Renderer *renderer);
 private:
 };
+#endif

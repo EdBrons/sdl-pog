@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TEXTUREMANAGER_H
+#define TEXTUREMANAGER_H
 #include <iostream>
 #include <fstream>
 #include "json.hpp"
@@ -15,3 +16,4 @@ public:
     static std::vector<AnimationFrame> *LoadAnimation(const char *name, const char *jsonfile);
 private:
 };
+#endif
