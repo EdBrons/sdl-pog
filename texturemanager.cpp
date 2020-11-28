@@ -8,26 +8,28 @@ SDL_Texture *TextureManager::LoadTexture(const char *file)
     return texture;
 }
 
-// std::vector<AnimationFrame> *TextureManager::LoadAnimation(const char *name, const char *json)
-// {
-    // std::ifstream ifs(json);
-    // std::vector<AnimationFrame> *frames_vector = new std::vector<AnimationFrame>();
-    // auto anim = nlohmann::json::parse(ifs)[name];
-    // auto frames = anim["frames"];
-    // for (auto b = frames.begin(); b != frames.end(); ++b)
-    // {
-    //     id++;
-    //     int x = (*b)["x"];
-    //     int y = (*b)["y"];
-    //     int w = (*b)["w"];
-    //     int h = (*b)["h"];
-    //     int t = (*b)["duration"];
-    //     SDL_Rect *rect = new SDL_Rect();
-    //     rect->x = x;
-    //     rect->y = y;
-    //     rect->w = w;
-    //     rect->h = h;
-    //     current->srect = rect;
-    // }
-    // return nullptr;
-// }
+static std::vector<AnimationFrame*> *LoadAnimation(const char *name, const char *json)
+{
+    std::ifstream ifs(json);
+    auto anim = nlohmann::json::parse(ifs)[name];
+    std::vector<AnimationFrame*> *frames_vector = new std::vector<AnimationFrame*>();
+    auto frames = anim["frames"];
+    for (auto b = frames.begin(); b != frames.end(); ++b)
+    {
+        AnimationFrame *a = new AnimationFrame();
+        int x = (*b)["x"];
+        int y = (*b)["y"];
+        int w = (*b)["w"];
+        int h = (*b)["h"];
+        int d = (*b)["duration"];
+        SDL_Rect rect;
+        rect.x = x;
+        rect.y = y;
+        rect.w = w;
+        rect.h = h;
+        a->srect = rect;
+        a->duration = d;
+        frames_vector->push_back(a);
+    }
+    return frames_vector;
+}

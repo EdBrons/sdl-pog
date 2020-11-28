@@ -4,7 +4,11 @@ SDL_Renderer *Game::Renderer = nullptr;
 SDL_Texture *Game::SpriteSheet = nullptr;
 
 Game::Game()
-{}
+{
+    isRunning = false;
+    window = nullptr;
+    sprites = nullptr;
+}
 
 Game::~Game()
 {}

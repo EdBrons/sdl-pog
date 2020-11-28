@@ -13,8 +13,9 @@ class Animation
 public:
     Animation();
     ~Animation();
+    AnimationFrame *next(AnimationFrame *current);
 private:
-    std::vector<AnimationFrame> frames;
+    std::vector<AnimationFrame*> *frames;
 };
 
 class Sprite 
@@ -25,6 +26,10 @@ public:
     void update(int delta);
     void render(SDL_Renderer *renderer, SDL_Texture *spritesheet);
 private:
+    void setFrame(AnimationFrame *a);
+    int timer;
+    Animation *animation;
+    AnimationFrame *current;
     SDL_Rect *srect;
     SDL_Rect drect;
 };
