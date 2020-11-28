@@ -7,7 +7,7 @@ class Sprite
 public:
     Sprite();
     ~Sprite();
-    void update(int delta);
+    void update();
     void render(SDL_Renderer *renderer);
 private:
 };
