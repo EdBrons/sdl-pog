@@ -1,15 +1,17 @@
 #pragma once
-#include <map>
 #include <iostream>
 #include <fstream>
-#include "game.hpp"
 #include "json.hpp"
 
+struct AnimationFrame {
+    int time;
+    SDL_Rect *srect;
+    AnimationFrame *next;
+};
+
 class TextureManager {
-    public:
+public:
     static SDL_Texture *LoadTexture(const char *file);
-    static std::vector<SDL_Rect*> *GetAnimation(std::string name);
-    static std::map<std::string, std::vector<SDL_Rect*>*> *LoadSpriteSheet(const char *file, const char *json);
-    private:
-    static std::map<std::string, std::vector<SDL_Rect*>*> *TextureMap;
+    static AnimationFrame *LoadAnimation(const char *name, const char *jsonfile);
+private:
 };

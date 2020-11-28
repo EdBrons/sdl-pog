@@ -1,11 +1,8 @@
 #include "game.hpp"
 
 SDL_Renderer *Game::Renderer = nullptr;
-Sprite *Game::sprite = nullptr;
 SDL_Texture *Game::SpriteSheet = nullptr;
-std::map<std::string, std::vector<SDL_Rect*>*> *Animations = nullptr;
-
-// Sprite *sprite = nullptr;
+AnimationFrame *Game::BarbarianAttack = nullptr;
 
 Game::Game()
 {}
@@ -26,11 +23,8 @@ void Game::init(const char *title, int width, int height)
         std::cout << "SDL failed to inialize. SDL Error: " << SDL_GetError() << std::endl;
         isRunning = false;
     }
-
-    TextureManager::LoadSpriteSheet("assets/microFantasy.v0.4/characters/all.png", "assets/microFantasy.v0.4/characters/all.json");
-    // SpriteSheet = TextureManager::LoadTexture("assets/microFantasy.v0.4/characters/all.png");
-    // sprite = new Sprite();
-    // sprite->play_animation(TextureManager::GetAnimation("barbarian_attack"));
+    SpriteSheet = TextureManager::LoadTexture("assets/microFantasy.v0.4/characters/all.png");
+    BarbarianAttack = TextureManager::LoadAnimation("barbarian_attack", "assets/microFantasy.v0.4/characters/all.json");
 }
 
 void Game::handleEvents()
@@ -46,15 +40,12 @@ void Game::handleEvents()
     }
 }
 
-void Game::update(int delta)
-{
-    // sprite->update(delta);
-}
+void Game::update()
+{}
 
 void Game::render()
 {
     SDL_RenderClear(Renderer);
-    // sprite->render();
     SDL_RenderPresent(Renderer);
 }
 
