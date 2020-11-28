@@ -72,11 +72,10 @@ void Game::update()
 void Game::render(int delta)
 {
     SDL_RenderClear(Renderer);
-    // render sprites
     for (auto s : *sprites)
     {
         s->update(delta);
-        s->render(Renderer);
+        s->render(Renderer, SpriteSheet);
     }
     SDL_RenderPresent(Renderer);
 }

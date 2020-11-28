@@ -1,4 +1,3 @@
-#include "game.hpp"
 #include "texturemanager.hpp"
 
 SDL_Texture *TextureManager::LoadTexture(const char *file)
@@ -9,8 +8,8 @@ SDL_Texture *TextureManager::LoadTexture(const char *file)
     return texture;
 }
 
-std::vector<AnimationFrame> *TextureManager::LoadAnimation(const char *name, const char *json)
-{
+// std::vector<AnimationFrame> *TextureManager::LoadAnimation(const char *name, const char *json)
+// {
     // std::ifstream ifs(json);
     // std::vector<AnimationFrame> *frames_vector = new std::vector<AnimationFrame>();
     // auto anim = nlohmann::json::parse(ifs)[name];
@@ -30,5 +29,5 @@ std::vector<AnimationFrame> *TextureManager::LoadAnimation(const char *name, con
     //     rect->h = h;
     //     current->srect = rect;
     // }
-    return nullptr;
-}
+    // return nullptr;
+// }
