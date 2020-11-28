@@ -1,5 +1,4 @@
-#ifndef SPRITE_H
-#define SPRITE_H
+#pragma once
 #include <SDL2/SDL.h>
 
 class Sprite 
@@ -11,4 +10,3 @@ public:
     void render(SDL_Renderer *renderer);
 private:
 };
-#endif

@@ -45,7 +45,6 @@ void Game::removeSprite(Sprite *sprite)
         if (*el == sprite)
         {
             sprites->erase(el);
-            free(sprite);
         }
         else
         {
